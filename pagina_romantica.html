@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te amo - Sorpresa de Cumpleaños</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #faf9f7 0%, #f5eff0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e8d4d8 0%, #dfc9d1 100%);
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 1px solid rgba(200, 150, 160, 0.2);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #5a3a42;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: #8a6a72;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .decorative-line {
+            width: 60px;
+            height: 2px;
+            background: #c9949e;
+            margin: 12px auto;
+            border-radius: 1px;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f0e0e5 0%, #e8d0db 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(200, 150, 160, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item.full {
+            grid-column: 1 / -1;
+            aspect-ratio: 16/9;
+        }
+
+        .placeholder-text {
+            color: #b8949c;
+            font-size: 12px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .letter-section {
+            background: linear-gradient(135deg, #faf7f5 0%, #f5f0f2 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 4px solid #d4a5ad;
+        }
+
+        .letter-title {
+            font-size: 16px;
+            color: #5a3a42;
+            margin-bottom: 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .letter-content {
+            color: #6b4b53;
+            line-height: 1.8;
+            font-size: 15px;
+            font-family: 'Georgia', serif;
+        }
+
+        .letter-content p {
+            margin-bottom: 12px;
+        }
+
+        .letter-signature {
+            margin-top: 20px;
+            text-align: right;
+            color: #8a6a72;
+            font-style: italic;
+        }
+
+        .footer {
+            background: #faf9f7;
+            padding: 20px 30px;
+            text-align: center;
+            border-top: 1px solid #e8dce0;
+            font-size: 13px;
+            color: #9a8a92;
+        }
+
+        .qr-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e8dce0;
+            text-align: center;
+        }
+
+        .qr-title {
+            font-size: 14px;
+            color: #5a3a42;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        #qrcode {
+            display: inline-block;
+            padding: 15px;
+            background: white;
+            border: 1px solid #e8dce0;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-item.full {
+                grid-column: 1;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .content {
+                padding: 25px 20px;
+            }
+
+            .letter-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Feliz Cumpleaños 💝</h1>
+            <div class="decorative-line"></div>
+            <p>Una sorpresa especial para ti</p>
+        </div>
+
+        <div class="content">
+            <!-- GALERÍA DE FOTOS -->
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="C:\Users\Ryzen AMD\Downloads\sorpresa\WhatsApp Image 2026-06-05 at 3.09.02 PM.jpeg" alt="Foto 1">
+                    <!-- O si no tienes la foto aún, usa:
+                    <div class="placeholder-text">📸 Foto 1</div>
+                    -->
+                </div>
+                <div class="gallery-item">
+                    <img src="C:\Users\Ryzen AMD\Downloads\sorpresa\WhatsApp Image 2026-06-05 at 3.09.01 PM (1).jpeg" alt="Foto 2">
+                    <!-- O: <div class="placeholder-text">📸 Foto 2</div> -->
+                </div>
+                <div class="gallery-item full">
+                    <img src="C:\Users\Ryzen AMD\Downloads\sorpresa\LOGO CS-JLVM.png" alt="Foto 3">
+                    <!-- O: <div class="placeholder-text">📸 Foto 3</div> -->
+                </div>
+            </div>
+
+            <!-- CARTA PERSONALIZADA -->
+            <div class="letter-section">
+                <div class="letter-title">UNA CARTA PARA TI</div>
+                <div class="letter-content">
+                    <p>Cariño,</p>
+                    
+                    <p>Hoy es un día especial porque el mundo ganó una persona extraordinaria. Cada día contigo es un regalo que no doy por sentado.</p>
+                    
+                    <p>Quería que supieras lo importante que eres para mí. Tu sonrisa ilumina mis días, tu risa es mi mejor música, y tus ojos reflejan la razón por la cual creo en el amor.</p>
+                    
+                    <p>Gracias por ser como eres, por permitirme estar en tu vida y por ser mi compañera en cada momento. Eres mi mejor amiga, mi amor, mi todo.</p>
+                    
+                    <p>Hoy celebramos un año más de tu existencia, pero cada día quiero celebrarte a ti. Quiero ser parte de tus sueños, tus logros y tus alegrías.</p>
+                    
+                    <p>Te amo más de lo que las palabras podrían expresar. Que este sea solo el primero de muchos cumpleaños juntos.</p>
+                    
+                    <div class="letter-signature">
+                        Con todo mi corazón,<br>
+                        ❤️
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN DE CÓDIGO QR -->
+            <div class="qr-section">
+                <div class="qr-title">Comparte esta sorpresa</div>
+                <div id="qrcode"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            🌹 Una sorpresa especial creada con amor 🌹
+        </div>
+    </div>
+
+    <script>
+        // Generar código QR con la URL actual
+        const currentUrl = window.location.href;
+        new QRCode(document.getElementById("qrcode"), {
+            text: currentUrl,
+            width: 200,
+            height: 200,
+            colorDark: "#d4a5ad",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        // Instrucciones para reemplazar las fotos:
+        // 1. Reemplaza FOTO1.jpg, FOTO2.jpg, FOTO3.jpg con las rutas de tus fotos
+        // 2. Las fotos deben estar en la misma carpeta que este archivo HTML
+        // O cambia los src="" a URLs directas de internet
+    </script>
+</body>
+</html>
