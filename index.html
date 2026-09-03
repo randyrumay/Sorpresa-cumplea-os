@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Te amo - Sorpresa de Cumpleaños</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <title>Para ti ❤️</title>
+
     <style>
         * {
             margin: 0;
@@ -12,278 +13,563 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #faf9f7 0%, #f5eff0 100%);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(255,255,255,.9), transparent 30%),
+                linear-gradient(145deg, #fff7f8, #f9e9ed 50%, #fff5f3);
+            color: #5b3a42;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 700px;
-            width: 100%;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            animation: fadeIn 1s ease-out;
+        /* -------------------------
+           CORAZONES DECORATIVOS
+        ------------------------- */
+
+        .heart {
+            position: fixed;
+            color: rgba(210, 125, 145, 0.25);
+            font-size: 20px;
+            pointer-events: none;
+            animation: floatHeart 7s linear infinite;
+            z-index: 0;
         }
 
-        @keyframes fadeIn {
-            from {
+        .heart:nth-child(1) {
+            left: 8%;
+            animation-delay: 0s;
+        }
+
+        .heart:nth-child(2) {
+            left: 25%;
+            animation-delay: 2s;
+        }
+
+        .heart:nth-child(3) {
+            left: 70%;
+            animation-delay: 4s;
+        }
+
+        .heart:nth-child(4) {
+            left: 90%;
+            animation-delay: 1s;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(110vh) rotate(0deg);
                 opacity: 0;
-                transform: translateY(20px);
             }
-            to {
+
+            15% {
                 opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-20vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* -------------------------
+           CONTENEDOR
+        ------------------------- */
+
+        .page {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 760px;
+            margin: auto;
+            background: rgba(255,255,255,.72);
+            backdrop-filter: blur(8px);
+            min-height: 100vh;
+            box-shadow: 0 0 50px rgba(130, 75, 90, .08);
+        }
+
+        /* -------------------------
+           PORTADA
+        ------------------------- */
+
+        .hero {
+            min-height: 82vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 45px 25px;
+            position: relative;
+        }
+
+        .cake {
+            font-size: 65px;
+            margin-bottom: 20px;
+            animation: cakeFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes cakeFloat {
+            0%, 100% {
                 transform: translateY(0);
             }
+
+            50% {
+                transform: translateY(-8px);
+            }
         }
 
-        .header {
-            background: linear-gradient(135deg, #e8d4d8 0%, #dfc9d1 100%);
-            padding: 40px 30px;
-            text-align: center;
-            border-bottom: 1px solid rgba(200, 150, 160, 0.2);
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(36px, 10vw, 58px);
+            color: #6d3e4c;
+            line-height: 1.05;
+            margin-bottom: 18px;
         }
 
-        .header h1 {
-            font-size: 28px;
-            color: #5a3a42;
-            margin-bottom: 8px;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-        }
-
-        .header p {
-            color: #8a6a72;
-            font-size: 14px;
-            font-style: italic;
-        }
-
-        .decorative-line {
-            width: 60px;
+        .hero .line {
+            width: 65px;
             height: 2px;
-            background: #c9949e;
-            margin: 12px auto;
-            border-radius: 1px;
+            background: #d59aa8;
+            margin: 5px auto 20px;
         }
 
-        .content {
-            padding: 40px 30px;
+        .hero p {
+            font-size: 17px;
+            color: #89656e;
+            max-width: 400px;
+            line-height: 1.7;
         }
+
+        .scroll-message {
+            position: absolute;
+            bottom: 30px;
+            font-size: 13px;
+            color: #a17b84;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: .5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* -------------------------
+           SECCIONES
+        ------------------------- */
+
+        .section {
+            padding: 30px 0 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: Georgia, serif;
+            font-size: 25px;
+            color: #673f49;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #a07882;
+            font-size: 13px;
+            margin-bottom: 28px;
+            padding: 0 20px;
+        }
+
+        /* -------------------------
+           GALERÍA DESLIZABLE
+        ------------------------- */
 
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
+            display: flex;
+            overflow-x: auto;
+            gap: 24px;
+            padding: 15px 28px 30px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
         }
 
-        .gallery-item {
+        .gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        .photo-card {
+            flex: 0 0 88%;
+            max-width: 570px;
+            scroll-snap-align: center;
+            background: white;
+            padding: 12px 12px 38px;
+            border-radius: 2px;
+            box-shadow:
+                0 8px 20px rgba(80, 40, 50, .12),
+                0 2px 5px rgba(80, 40, 50, .08);
+            transform: rotate(-1deg);
+            transition: transform .4s ease;
+        }
+
+        .photo-card:nth-child(2) {
+            transform: rotate(1.2deg);
+        }
+
+        .photo-card:nth-child(3) {
+            transform: rotate(-.7deg);
+        }
+
+        .photo-card:active {
+            transform: scale(.98);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 390px;
+            display: block;
+            object-fit: cover;
+            background: #eee;
+        }
+
+        .photo-caption {
+            text-align: center;
+            font-family: "Segoe Print", cursive;
+            color: #80616a;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        /* -------------------------
+           INDICADORES
+        ------------------------- */
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: -5px;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #d8b3bb;
+        }
+
+        .dot:first-child {
+            background: #a96b7b;
+            transform: scale(1.25);
+        }
+
+        .swipe {
+            text-align: center;
+            color: #aa7d86;
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        /* -------------------------
+           CARTA
+        ------------------------- */
+
+        .letter {
+            margin: 20px;
+            padding: 32px 25px;
+            background:
+                linear-gradient(rgba(255,255,255,.82), rgba(255,255,255,.82)),
+                #fffaf7;
+            border-radius: 5px;
+            box-shadow: 0 8px 25px rgba(100, 50, 60, .08);
+            border: 1px solid #f0dfe3;
             position: relative;
-            aspect-ratio: 1;
-            border-radius: 12px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #f0e0e5 0%, #e8d0db 100%);
+        }
+
+        .letter::before {
+            content: "♥";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d59aa8;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(200, 150, 160, 0.15);
-            transition: transform 0.3s ease;
+            font-size: 14px;
         }
 
-        .gallery-item:hover {
-            transform: scale(1.02);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .gallery-item.full {
-            grid-column: 1 / -1;
-            aspect-ratio: 16/9;
-        }
-
-        .placeholder-text {
-            color: #b8949c;
-            font-size: 12px;
+        .letter h2 {
             text-align: center;
-            font-style: italic;
-        }
-
-        .letter-section {
-            background: linear-gradient(135deg, #faf7f5 0%, #f5f0f2 100%);
-            padding: 30px;
-            border-radius: 12px;
+            font-family: Georgia, serif;
+            font-size: 20px;
             margin-bottom: 25px;
-            border-left: 4px solid #d4a5ad;
-        }
-
-        .letter-title {
-            font-size: 16px;
-            color: #5a3a42;
-            margin-bottom: 15px;
-            font-weight: 600;
-            letter-spacing: 1px;
+            color: #70434e;
         }
 
         .letter-content {
-            color: #6b4b53;
-            line-height: 1.8;
+            font-family: Georgia, serif;
             font-size: 15px;
-            font-family: 'Georgia', serif;
+            line-height: 1.9;
+            color: #684c54;
         }
 
         .letter-content p {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
-        .letter-signature {
-            margin-top: 20px;
+        .signature {
             text-align: right;
-            color: #8a6a72;
+            margin-top: 25px;
+            color: #906c75;
             font-style: italic;
         }
 
-        .footer {
-            background: #faf9f7;
-            padding: 20px 30px;
-            text-align: center;
-            border-top: 1px solid #e8dce0;
-            font-size: 13px;
-            color: #9a8a92;
+        .signature-heart {
+            font-size: 25px;
+            margin-top: 5px;
         }
 
-        .qr-section {
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid #e8dce0;
+        /* -------------------------
+           FINAL
+        ------------------------- */
+
+        .final-message {
             text-align: center;
+            padding: 45px 25px 65px;
         }
 
-        .qr-title {
-            font-size: 14px;
-            color: #5a3a42;
+        .final-message .big-heart {
+            font-size: 45px;
             margin-bottom: 15px;
-            font-weight: 600;
         }
 
-        #qrcode {
-            display: inline-block;
-            padding: 15px;
-            background: white;
-            border: 1px solid #e8dce0;
-            border-radius: 8px;
+        .final-message h2 {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            color: #70404d;
+            margin-bottom: 12px;
         }
 
-        @media (max-width: 600px) {
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-            
-            .gallery-item.full {
-                grid-column: 1;
+        .final-message p {
+            color: #98727b;
+            font-size: 14px;
+        }
+
+        /* -------------------------
+           ESCRITORIO
+        ------------------------- */
+
+        @media (min-width: 700px) {
+
+            body {
+                padding: 30px 0;
             }
 
-            .header h1 {
-                font-size: 24px;
+            .page {
+                border-radius: 25px;
+                overflow: hidden;
             }
 
-            .content {
-                padding: 25px 20px;
+            .hero {
+                min-height: 600px;
             }
 
-            .letter-section {
-                padding: 20px;
+            .photo-card {
+                flex-basis: 70%;
+            }
+
+            .photo-card img {
+                height: 480px;
+            }
+        }
+
+        /* -------------------------
+           TELÉFONOS PEQUEÑOS
+        ------------------------- */
+
+        @media (max-width: 380px) {
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .photo-card {
+                flex-basis: 88%;
+            }
+
+            .photo-card img {
+                height: 330px;
+            }
+
+            .letter {
+                margin: 15px;
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Feliz Cumpleaños 💝</h1>
-            <div class="decorative-line"></div>
-            <p>Una sorpresa especial para ti</p>
-        </div>
 
-        <div class="content">
-            <!-- GALERÍA DE FOTOS -->
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="foto01.jpg" alt="Foto 1">
-                    <!-- O si no tienes la foto aún, usa:
-                    <div class="placeholder-text">📸 Foto 1</div>
-                    -->
-                </div>
-                <div class="gallery-item">
-                    <img src="foto02.jpg" alt="Foto 2">
-                    <!-- O: <div class="placeholder-text">📸 Foto 2</div> -->
-                </div>
-                <div class="gallery-item full">
-                    <img src="foto03.jpg" alt="Foto 3">
-                    <!-- O: <div class="placeholder-text">📸 Foto 3</div> -->
-                </div>
+<body>
+
+    <!-- Corazones decorativos -->
+    <div class="heart">♥</div>
+    <div class="heart">♡</div>
+    <div class="heart">♥</div>
+    <div class="heart">♡</div>
+
+    <main class="page">
+
+        <!-- PORTADA -->
+        <section class="hero">
+
+            <div class="cake">🎂</div>
+
+            <h1>Feliz<br>Cumpleaños</h1>
+
+            <div class="line"></div>
+
+            <p>
+                Hoy quiero regalarte algo diferente...
+                un pequeño pedacito de todo lo que significas para mí. ❤️
+            </p>
+
+            <div class="scroll-message">
+                Desliza hacia abajo ↓
             </div>
 
-            <!-- CARTA PERSONALIZADA -->
-            <div class="letter-section">
-                <div class="letter-title">UNA CARTA PARA TI</div>
-                <div class="letter-content">
-                    <p>Cariño,</p>
-                    
-                    <p>Hoy es un día especial porque el mundo ganó una persona extraordinaria. Cada día contigo es un regalo que no doy por sentado.</p>
-                    
-                    <p>Quería que supieras lo importante que eres para mí. Tu sonrisa ilumina mis días, tu risa es mi mejor música, y tus ojos reflejan la razón por la cual creo en el amor.</p>
-                    
-                    <p>Gracias por ser como eres, por permitirme estar en tu vida y por ser mi compañera en cada momento. Eres mi mejor amiga, mi amor, mi todo.</p>
-                    
-                    <p>Hoy celebramos un año más de tu existencia, pero cada día quiero celebrarte a ti. Quiero ser parte de tus sueños, tus logros y tus alegrías.</p>
-                    
-                    <p>Te amo más de lo que las palabras podrían expresar. Que este sea solo el primero de muchos cumpleaños juntos.</p>
-                    
-                    <div class="letter-signature">
-                        Con todo mi corazón,<br>
-                        ❤️
+        </section>
+
+
+        <!-- GALERÍA -->
+        <section class="section">
+
+            <h2 class="section-title">
+                Algunos momentos contigo ❤️
+            </h2>
+
+            <p class="section-subtitle">
+                Desliza las fotografías para verlas
+            </p>
+
+            <div class="gallery">
+
+                <div class="photo-card">
+                    <img src="./foto01.jpg" alt="Nuestro recuerdo">
+                    <div class="photo-caption">
+                        Un momento que guardo en mi corazón ❤️
                     </div>
                 </div>
+
+                <div class="photo-card">
+                    <img src="./foto02.jpg" alt="Nuestro recuerdo">
+                    <div class="photo-caption">
+                        Porque cada momento contigo es especial
+                    </div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="./foto03.jpg" alt="Nuestro recuerdo">
+                    <div class="photo-caption">
+                        Y espero que sean muchos más...
+                    </div>
+                </div>
+
             </div>
 
-            <!-- SECCIÓN DE CÓDIGO QR -->
-            <div class="qr-section">
-                <div class="qr-title">Comparte esta sorpresa</div>
-                <div id="qrcode"></div>
+            <div class="dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
             </div>
-        </div>
 
-        <div class="footer">
-            🌹 Una sorpresa especial creada con amor 🌹
-        </div>
-    </div>
+            <div class="swipe">
+                ← Desliza para descubrir cada recuerdo →
+            </div>
 
-    <script>
-        // Generar código QR con la URL actual
-        const currentUrl = window.location.href;
-        new QRCode(document.getElementById("qrcode"), {
-            text: currentUrl,
-            width: 200,
-            height: 200,
-            colorDark: "#d4a5ad",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
+        </section>
 
-        // Instrucciones para reemplazar las fotos:
-        // 1. Reemplaza FOTO1.jpg, FOTO2.jpg, FOTO3.jpg con las rutas de tus fotos
-        // 2. Las fotos deben estar en la misma carpeta que este archivo HTML
-        // O cambia los src="" a URLs directas de internet
-    </script>
+
+        <!-- CARTA -->
+        <section class="letter">
+
+            <h2>Una carta para ti 💌</h2>
+
+            <div class="letter-content">
+
+                <p>Cariño,</p>
+
+                <p>
+                    Hoy es un día especial porque el mundo ganó
+                    una persona extraordinaria. Cada día contigo
+                    es un regalo que no doy por sentado.
+                </p>
+
+                <p>
+                    Quería que supieras lo importante que eres
+                    para mí. Tu sonrisa ilumina mis días, tu risa
+                    es mi mejor música, y tus ojos reflejan la
+                    razón por la cual creo en el amor.
+                </p>
+
+                <p>
+                    Gracias por ser como eres, por permitirme
+                    estar en tu vida y por ser mi compañera en
+                    cada momento. Eres mi mejor amiga, mi amor,
+                    mi todo.
+                </p>
+
+                <p>
+                    Hoy celebramos un año más de tu existencia,
+                    pero cada día quiero celebrarte a ti. Quiero
+                    ser parte de tus sueños, tus logros y tus
+                    alegrías.
+                </p>
+
+                <p>
+                    Te amo más de lo que las palabras podrían
+                    expresar. Que este sea solo el primero de
+                    muchos cumpleaños juntos.
+                </p>
+
+                <div class="signature">
+                    Con todo mi corazón,
+                    <div class="signature-heart">❤️</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MENSAJE FINAL -->
+        <section class="final-message">
+
+            <div class="big-heart">🌹</div>
+
+            <h2>Te amo</h2>
+
+            <p>
+                Feliz cumpleaños, mi amor.
+                <br>
+                Que todos tus deseos se hagan realidad. ❤️
+            </p>
+
+        </section>
+
+    </main>
+
 </body>
 </html>
+
