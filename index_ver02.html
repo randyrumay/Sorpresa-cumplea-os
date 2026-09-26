@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Una página especial para celebrar a alguien especial en su cumpleaños. Con fotos, mensajes y mucho amor.">
+    <meta name="theme-color" content="#d59aa8">
+    
+    <!-- Open Graph para compartir -->
+    <meta property="og:title" content="Feliz Cumpleaños ❤️">
+    <meta property="og:description" content="Una página hecha con amor para ti">
+    <meta property="og:image" content="./og-image.jpg">
+    <meta property="og:type" content="website">
+
+    <title>Para ti ❤️ | Feliz Cumpleaños</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(255,255,255,.9), transparent 30%),
+                linear-gradient(145deg, #fff7f8, #f9e9ed 50%, #fff5f3);
+            color: #5b3a42;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* -------------------------
+           CORAZONES DECORATIVOS
+        ------------------------- */
+
+        .heart {
+            position: fixed;
+            color: rgba(210, 125, 145, 0.25);
+            font-size: 20px;
+            pointer-events: none;
+            animation: floatHeart 7s linear infinite;
+            z-index: 0;
+        }
+
+        .heart:nth-child(1) {
+            left: 8%;
+            animation-delay: 0s;
+        }
+
+        .heart:nth-child(2) {
+            left: 25%;
+            animation-delay: 2s;
+        }
+
+        .heart:nth-child(3) {
+            left: 70%;
+            animation-delay: 4s;
+        }
+
+        .heart:nth-child(4) {
+            left: 90%;
+            animation-delay: 1s;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(110vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-20vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* -------------------------
+           CONTENEDOR
+        ------------------------- */
+
+        .page {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 760px;
+            margin: auto;
+            background: rgba(255,255,255,.72);
+            backdrop-filter: blur(8px);
+            min-height: 100vh;
+            box-shadow: 0 0 50px rgba(130, 75, 90, .08);
+        }
+
+        /* -------------------------
+           PORTADA
+        ------------------------- */
+
+        .hero {
+            min-height: 82vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 45px 25px;
+            position: relative;
+            opacity: 0;
+            animation: fadeInHero 0.8s ease forwards;
+        }
+
+        @keyframes fadeInHero {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cake {
+            font-size: 65px;
+            margin-bottom: 20px;
+            animation: cakeFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes cakeFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(36px, 10vw, 58px);
+            color: #6d3e4c;
+            line-height: 1.05;
+            margin-bottom: 18px;
+        }
+
+        .hero .line {
+            width: 65px;
+            height: 2px;
+            background: #d59aa8;
+            margin: 5px auto 20px;
+            animation: expandLine 1s ease-out;
+        }
+
+        @keyframes expandLine {
+            from {
+                width: 0;
+            }
+            to {
+                width: 65px;
+            }
+        }
+
+        .hero p {
+            font-size: 17px;
+            color: #89656e;
+            max-width: 400px;
+            line-height: 1.7;
+        }
+
+        .scroll-message {
+            position: absolute;
+            bottom: 30px;
+            font-size: 13px;
+            color: #a17b84;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: .5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* -------------------------
+           SECCIONES
+        ------------------------- */
+
+        .section {
+            padding: 30px 0 50px;
+            opacity: 0;
+            animation: fadeInSection 0.8s ease forwards;
+        }
+
+        .section:nth-of-type(2) { animation-delay: 0.2s; }
+        .section:nth-of-type(3) { animation-delay: 0.4s; }
+        .section:nth-of-type(4) { animation-delay: 0.6s; }
+
+        @keyframes fadeInSection {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: Georgia, serif;
+            font-size: 25px;
+            color: #673f49;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #a07882;
+            font-size: 13px;
+            margin-bottom: 28px;
+            padding: 0 20px;
+        }
+
+        /* -------------------------
+           GALERÍA DESLIZABLE
+        ------------------------- */
+
+        .gallery-container {
+            position: relative;
+        }
+
+        .gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 24px;
+            padding: 15px 28px 30px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        .photo-card {
+            flex: 0 0 88%;
+            max-width: 570px;
+            scroll-snap-align: center;
+            background: white;
+            padding: 12px 12px 38px;
+            border-radius: 2px;
+            box-shadow:
+                0 8px 20px rgba(80, 40, 50, .12),
+                0 2px 5px rgba(80, 40, 50, .08);
+            transform: rotate(-1deg);
+            transition: all .4s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .photo-card:nth-child(2) {
+            transform: rotate(1.2deg);
+        }
+
+        .photo-card:nth-child(3) {
+            transform: rotate(-.7deg);
+        }
+
+        .photo-card:hover {
+            box-shadow:
+                0 12px 30px rgba(80, 40, 50, .18),
+                0 4px 8px rgba(80, 40, 50, .12);
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .photo-card:active {
+            transform: scale(.98) rotate(0deg);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 390px;
+            display: block;
+            object-fit: cover;
+            background: linear-gradient(135deg, #f5d5dd, #e8c8d1);
+            border-radius: 2px;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 390px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5d5dd, #e8c8d1);
+            font-size: 50px;
+            color: rgba(210, 125, 145, 0.4);
+            border-radius: 2px;
+        }
+
+        .photo-caption {
+            text-align: center;
+            font-family: "Segoe Print", cursive;
+            color: #80616a;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        /* -------------------------
+           INDICADORES DINÁMICOS
+        ------------------------- */
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: -5px;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #d8b3bb;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #a96b7b;
+            transform: scale(1.25);
+        }
+
+        .swipe {
+            text-align: center;
+            color: #aa7d86;
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        /* -------------------------
+           CARTA
+        ------------------------- */
+
+        .letter {
+            margin: 20px;
+            padding: 32px 25px;
+            background:
+                linear-gradient(rgba(255,255,255,.82), rgba(255,255,255,.82)),
+                #fffaf7;
+            border-radius: 5px;
+            box-shadow: 0 8px 25px rgba(100, 50, 60, .08);
+            border: 1px solid #f0dfe3;
+            position: relative;
+            opacity: 0;
+            animation: fadeInLetter 0.8s ease forwards;
+        }
+
+        @keyframes fadeInLetter {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .letter::before {
+            content: "♥";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d59aa8;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            animation: heartBeat 1.5s ease infinite;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.1);
+            }
+        }
+
+        .letter h2 {
+            text-align: center;
+            font-family: Georgia, serif;
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: #70434e;
+        }
+
+        .letter-content {
+            font-family: Georgia, serif;
+            font-size: 15px;
+            line-height: 1.9;
+            color: #684c54;
+        }
+
+        .letter-content p {
+            margin-bottom: 15px;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 25px;
+            color: #906c75;
+            font-style: italic;
+        }
+
+        .signature-heart {
+            font-size: 25px;
+            margin-top: 5px;
+            animation: heartPulse 1s ease infinite;
+        }
+
+        @keyframes heartPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* -------------------------
+           FINAL
+        ------------------------- */
+
+        .final-message {
+            text-align: center;
+            padding: 45px 25px 65px;
+            opacity: 0;
+            animation: fadeInFinal 0.8s ease forwards;
+        }
+
+        @keyframes fadeInFinal {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .final-message .big-heart {
+            font-size: 45px;
+            margin-bottom: 15px;
+            animation: floatBigHeart 2s ease-in-out infinite;
+        }
+
+        @keyframes floatBigHeart {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .final-message h2 {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            color: #70404d;
+            margin-bottom: 12px;
+        }
+
+        .final-message p {
+            color: #98727b;
+            font-size: 14px;
+        }
+
+        /* -------------------------
+           BOTÓN VOLVER ARRIBA
+        ------------------------- */
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #d59aa8, #c07a92);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(213, 154, 168, 0.4);
+            z-index: 100;
+            opacity: 0;
+            transition: all 0.3s ease;
+            animation: slideUp 0.3s ease forwards;
+        }
+
+        .scroll-to-top.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .scroll-to-top:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* -------------------------
+           CONTROL DE MÚSICA
+        ------------------------- */
+
+        .music-control {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #d59aa8, #c07a92);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(213, 154, 168, 0.4);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .music-control:active {
+            transform: scale(0.95);
+        }
+
+        .music-control.playing::before {
+            content: "♪";
+        }
+
+        .music-control.playing::after {
+            content: "♪";
+            margin-left: 3px;
+            animation: musicPulse 0.8s infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translateY(-5px);
+            }
+        }
+
+        /* -------------------------
+           CONFETTI
+        ------------------------- */
+
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        /* -------------------------
+           ESCRITORIO
+        ------------------------- */
+
+        @media (min-width: 700px) {
+
+            body {
+                padding: 30px 0;
+            }
+
+            .page {
+                border-radius: 25px;
+                overflow: hidden;
+            }
+
+            .hero {
+                min-height: 600px;
+            }
+
+            .photo-card {
+                flex-basis: 70%;
+            }
+
+            .photo-card img {
+                height: 480px;
+            }
+
+            .photo-placeholder {
+                height: 480px;
+            }
+
+            .scroll-to-top {
+                width: 55px;
+                height: 55px;
+                font-size: 26px;
+            }
+
+            .music-control {
+                width: 55px;
+                height: 55px;
+                font-size: 24px;
+            }
+        }
+
+        /* -------------------------
+           TELÉFONOS PEQUEÑOS
+        ------------------------- */
+
+        @media (max-width: 380px) {
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .photo-card {
+                flex-basis: 88%;
+            }
+
+            .photo-card img {
+                height: 330px;
+            }
+
+            .photo-placeholder {
+                height: 330px;
+            }
+
+            .letter {
+                margin: 15px;
+                padding: 30px 20px;
+            }
+
+            .scroll-to-top {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .music-control {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+                bottom: 15px;
+                left: 15px;
+            }
+        }
+
+        /* -------------------------
+           ACCESIBILIDAD
+        ------------------------- */
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        button:focus {
+            outline: 2px solid #d59aa8;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Corazones decorativos -->
+    <div class="heart">♥</div>
+    <div class="heart">♡</div>
+    <div class="heart">♥</div>
+    <div class="heart">♡</div>
+
+    <!-- Control de música -->
+    <button class="music-control" id="musicBtn" aria-label="Reproducir música" title="Música de fondo"></button>
+
+    <!-- Botón volver arriba -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Volver arriba">↑</button>
+
+    <main class="page">
+
+        <!-- PORTADA -->
+        <section class="hero">
+
+            <div class="cake">🎂</div>
+
+            <h1>Feliz<br>Cumpleaños</h1>
+
+            <div class="line"></div>
+
+            <p>
+                Hoy quiero regalarte algo diferente...
+                un pequeño pedacito de todo lo que significas para mí. ❤️
+            </p>
+
+            <div class="scroll-message">
+                Desliza hacia abajo ↓
+            </div>
+
+        </section>
+
+
+        <!-- GALERÍA -->
+        <section class="section gallery-container">
+
+            <h2 class="section-title">
+                Algunos momentos contigo ❤️
+            </h2>
+
+            <p class="section-subtitle">
+                Desliza las fotografías para verlas
+            </p>
+
+            <div class="gallery" id="gallery">
+
+                <div class="photo-card">
+                    <div class="photo-placeholder">📷</div>
+                    <div class="photo-caption">
+                        Un momento que guardo en mi corazón ❤️
+                    </div>
+                </div>
+
+                <div class="photo-card">
+                    <div class="photo-placeholder">📷</div>
+                    <div class="photo-caption">
+                        Porque cada momento contigo es especial
+                    </div>
+                </div>
+
+                <div class="photo-card">
+                    <div class="photo-placeholder">📷</div>
+                    <div class="photo-caption">
+                        Y espero que sean muchos más...
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="dots" id="dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
+
+            <div class="swipe">
+                ← Desliza para descubrir cada recuerdo →
+            </div>
+
+        </section>
+
+
+        <!-- CARTA -->
+        <section class="letter">
+
+            <h2>Una carta para ti 💌</h2>
+
+            <div class="letter-content">
+
+                <p>Cariño,</p>
+
+                <p>
+                    Hoy es un día especial porque el mundo ganó
+                    una persona extraordinaria. Cada día contigo
+                    es un regalo que no doy por sentado.
+                </p>
+
+                <p>
+                    Quería que supieras lo importante que eres
+                    para mí. Tu sonrisa ilumina mis días, tu risa
+                    es mi mejor música, y tus ojos reflejan la
+                    razón por la cual creo en el amor.
+                </p>
+
+                <p>
+                    Gracias por ser como eres, por permitirme
+                    estar en tu vida y por ser mi compañera en
+                    cada momento. Eres mi mejor amiga, mi amor,
+                    mi todo.
+                </p>
+
+                <p>
+                    Hoy celebramos un año más de tu existencia,
+                    pero cada día quiero celebrarte a ti. Quiero
+                    ser parte de tus sueños, tus logros y tus
+                    alegrías.
+                </p>
+
+                <p>
+                    Te amo más de lo que las palabras podrían
+                    expresar. Que este sea solo el primero de
+                    muchos cumpleaños juntos.
+                </p>
+
+                <div class="signature">
+                    Con todo mi corazón,
+                    <div class="signature-heart">❤️</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MENSAJE FINAL -->
+        <section class="final-message">
+
+            <div class="big-heart">🌹</div>
+
+            <h2>Te amo</h2>
+
+            <p>
+                Feliz cumpleaños, mi amor.
+                <br>
+                Que todos tus deseos se hagan realidad. ❤️
+            </p>
+
+        </section>
+
+    </main>
+
+    <script>
+        // ========================
+        // SCROLL TO TOP
+        // ========================
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ========================
+        // GALERÍA CON INDICADORES
+        // ========================
+        const gallery = document.getElementById('gallery');
+        const dots = document.querySelectorAll('.dot');
+        let currentIndex = 0;
+
+        gallery.addEventListener('scroll', () => {
+            const scrollPosition = gallery.scrollLeft;
+            const cardWidth = gallery.querySelector('.photo-card').offsetWidth + 24;
+            const newIndex = Math.round(scrollPosition / cardWidth);
+            
+            if (newIndex !== currentIndex && newIndex < dots.length) {
+                dots[currentIndex].classList.remove('active');
+                dots[newIndex].classList.add('active');
+                currentIndex = newIndex;
+            }
+        });
+
+        // Hacer los puntos clicables
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                const cardWidth = gallery.querySelector('.photo-card').offsetWidth + 24;
+                gallery.scrollTo({
+                    left: cardWidth * index,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // ========================
+        // MÚSICA DE FONDO
+        // ========================
+        const musicBtn = document.getElementById('musicBtn');
+        let isPlaying = false;
+        let audioContext;
+        let oscillator;
+        let gainNode;
+
+        // Crear una melodía simple con Web Audio API
+        function playMusic() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+
+            // Notas de una melodía simple (Do Re Mi...)
+            const notes = [262, 294, 330, 349, 392, 440, 494, 523]; // Frecuencias en Hz
+            const melody = [0, 2, 4, 5, 7, 7, 7, 5, 4, 2, 0]; // Índices de notas
+
+            let noteIndex = 0;
+            const noteDuration = 0.4; // segundos
+
+            function playNote() {
+                if (!isPlaying) return;
+
+                const note = melody[noteIndex % melody.length];
+                const frequency = notes[note];
+
+                if (oscillator) {
+                    oscillator.stop();
+                    oscillator.disconnect();
+                }
+
+                oscillator = audioContext.createOscillator();
+                gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.value = frequency;
+                oscillator.type = 'sine';
+
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + noteDuration);
+
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + noteDuration);
+
+                noteIndex++;
+                setTimeout(playNote, noteDuration * 1000);
+            }
+
+            playNote();
+        }
+
+        function stopMusic() {
+            isPlaying = false;
+            if (oscillator) {
+                oscillator.stop();
+                oscillator.disconnect();
+            }
+        }
+
+        musicBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            musicBtn.classList.toggle('playing');
+
+            if (isPlaying) {
+                playMusic();
+            } else {
+                stopMusic();
+            }
+        });
+
+        // ========================
+        // CONFETTI AL FINAL
+        // ========================
+        function createConfetti() {
+            const confettiPieces = ['🎉', '❤️', '✨', '🎊', '💕', '🌹', '⭐'];
+            
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.textContent = confettiPieces[Math.floor(Math.random() * confettiPieces.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                confetti.style.opacity = Math.random() * 0.5 + 0.5;
+                
+                document.body.appendChild(confetti);
+
+                const duration = Math.random() * 3 + 3;
+                const xMovement = (Math.random() - 0.5) * 200;
+                const rotation = Math.random() * 720;
+
+                confetti.animate([
+                    {
+                        transform: `translateY(0) translateX(0) rotate(0deg)`,
+                        opacity: Math.random() * 0.5 + 0.5
+                    },
+                    {
+                        transform: `translateY(${window.innerHeight + 100}px) translateX(${xMovement}px) rotate(${rotation}deg)`,
+                        opacity: 0
+                    }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+
+                setTimeout(() => confetti.remove(), duration * 1000);
+            }
+        }
+
+        // Activar confetti cuando se llega al final
+        window.addEventListener('scroll', () => {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = window.scrollY;
+
+            if (scrolled > scrollHeight * 0.85) {
+                // Solo una vez
+                if (!window.confettiTriggered) {
+                    window.confettiTriggered = true;
+                    createConfetti();
+                }
+            }
+        });
+
+        // ========================
+        // ANIMACIONES EN SCROLL
+        // ========================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section, .letter').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
